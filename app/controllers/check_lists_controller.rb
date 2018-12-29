@@ -17,7 +17,7 @@ class CheckListsController < ApplicationController
   end
 
   def show
-    @items = @check_list.items.to_a
+    @items = @check_list.items.order(created_at: :desc).to_a   # call to_a, because we want the dummy item not be part of the collection
     @item = @check_list.items.new
   end
   
