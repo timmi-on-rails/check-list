@@ -28,11 +28,11 @@
   <div class="list-group-item">
   <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
-    <div class="form-group mr-sm-3">
+    <div class="form-group mr-3 mb-0">
       <%= f.text_field :name, autofocus: true, required: true, class: 'form-control' %>
     </div>
   
-    <%= f.submit '+', class: 'btn btn-primary' %>
+    <%= f.submit '+', class: 'btn btn-primary mb-0' %>
   
   <% end %>
     </div>
