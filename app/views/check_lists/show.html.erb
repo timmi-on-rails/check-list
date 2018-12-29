@@ -18,17 +18,25 @@
   <%= stylesheet_link_tag 'bootstrap.min', media: 'all' %>
 <% end %>
 
-<h3><%= @check_list.title %></h3>
-
-<%= simple_form_for [ @check_list, @item ] do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :name, autofocus: true, 'x-webkit-speech' => true %>
-
-  <%= f.submit %>
-<% end %>
+<nav class="navbar navbar-dark bg-secondary">
+  <span class="navbar-brand mb-0 h1">
+    <%= @check_list.title %>
+  </span>
+</nav>
 
 <div class="list-group">
+  <div class="list-group-item">
+  <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
+
+    <div class="form-group mr-sm-3">
+      <%= f.text_field :name, autofocus: true, required: true, class: 'form-control' %>
+    </div>
+  
+    <%= f.submit '+', class: 'btn btn-primary' %>
+  
+  <% end %>
+    </div>
+
   <% @items.each do |item| %>
     <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: ('list-group-item list-group-item-action' + (item.checked ? ' list-group-item-light' : '')) do %>
       <% if item.checked %>
