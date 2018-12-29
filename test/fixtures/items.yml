@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id            :integer          not null, primary key
+#  name          :string           not null
+#  checked       :boolean          not null
+#  check_list_id :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  checked: 
+  check_list: one
+
+two:
+  name: MyString
+  checked: 
+  check_list: two

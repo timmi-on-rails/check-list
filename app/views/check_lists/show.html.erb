@@ -1,0 +1,43 @@
+<% content_for :title do %>
+  <%= @check_list.title %>
+<% end %>
+
+<% content_for :head do %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://weather-pwa-sample.firebaseapp.com/final/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="<%= manifest_check_list_path(@check_list, :json) %>">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="<%= @check_list.title %>">
+  <link rel="apple-touch-icon" href="<%= asset_path 'icon-152x152.png' %>">
+  <meta name="msapplication-TileImage" content="<%= asset_path 'icon-144x144.png' %>">
+  <meta name="msapplication-TileColor" content="#2F3BA2">
+  <%= stylesheet_link_tag 'bootstrap.min', media: 'all' %>
+<% end %>
+
+<h3><%= @check_list.title %></h3>
+
+<%= simple_form_for [ @check_list, @item ] do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name, autofocus: true, 'x-webkit-speech' => true %>
+
+  <%= f.submit %>
+<% end %>
+
+<div class="list-group">
+  <% @items.each do |item| %>
+    <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: ('list-group-item list-group-item-action' + (item.checked ? ' list-group-item-light' : '')) do %>
+      <% if item.checked %>
+        <strike><%= item.name %></strike>
+      <% else %>
+        <big><%= item.name %></big>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<script src="<%= app_check_list_path(@check_list, :js) %>" async></script>
