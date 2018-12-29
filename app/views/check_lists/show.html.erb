@@ -29,7 +29,7 @@
   <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
     <div class="form-group mr-3 mb-0">
-      <%= f.text_field :name, autofocus: true, required: true, class: 'form-control' %>
+      <%= f.text_field :name, required: true, class: 'form-control' %>
     </div>
   
     <%= f.submit '+', class: 'btn btn-primary mb-0' %>
@@ -38,9 +38,9 @@
     </div>
 
   <% @items.each do |item| %>
-    <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: ('list-group-item list-group-item-action' + (item.checked ? ' list-group-item-light' : '')) do %>
+    <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: ('list-group-item list-group-item-action' + (item.checked ? ' text-muted' : '')) do %>
       <% if item.checked %>
-        <strike><%= item.name %></strike>
+        <big><strike><%= item.name %></strike></big>
       <% else %>
         <big><%= item.name %></big>
       <% end %>
