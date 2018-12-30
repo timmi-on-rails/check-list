@@ -26,8 +26,6 @@
   <%= link_to cleanup_check_list_path, method: :post, data: { confirm: 'Delete checked items?' }, class: 'btn btn-warning btn-circle' do %>
     <%= image_tag 'erase.png', height: 20 %>
   <% end %>
-     
-  </button>
 </nav>
 
 <div class="list-group">
@@ -35,7 +33,7 @@
   <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
     <div class="form-group mr-3 mb-0">
-      <%= f.text_field :name, required: true, class: 'form-control' %>
+      <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control' %>
     </div>
   
     <%= f.submit '+', class: 'btn btn-primary mb-0' %>
