@@ -42,9 +42,9 @@
     </div>
 
   <% @items.each do |item| %>
-    <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: ('list-group-item list-group-item-action' + (item.checked ? ' text-muted' : '')) do %>
+    <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: 'list-group-item list-group-item-action' do %>
       <% if item.checked %>
-        <big><strike><%= item.name %></strike></big>
+        <big style="color: darkgray"><strike><%= item.name %></strike></big>
       <% else %>
         <big><%= item.name %></big>
       <% end %>
