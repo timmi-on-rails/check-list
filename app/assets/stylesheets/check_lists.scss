@@ -1,3 +1,13 @@
 // Place all the styles related to the CheckLists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-circle {
+    width: 35px;
+    height: 35px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}

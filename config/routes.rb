@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'app'
       get 'manifest'
       get 'service_worker'
+      post 'cleanup', to: 'check_lists#cleanup'
     end
   end
 end

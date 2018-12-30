@@ -22,6 +22,12 @@
   <span class="navbar-brand mb-0 h1">
     <%= @check_list.title %>
   </span>
+
+  <%= link_to cleanup_check_list_path, method: :post, data: { confirm: 'Delete checked items?' }, class: 'btn btn-warning btn-circle' do %>
+    <%= image_tag 'erase.png', height: 20 %>
+  <% end %>
+     
+  </button>
 </nav>
 
 <div class="list-group">

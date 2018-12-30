@@ -1,5 +1,5 @@
 class CheckListsController < ApplicationController
-  before_action :set_check_list, only: [:show, :manifest, :app, :service_worker]
+  before_action :set_check_list, only: [:cleanup, :show, :manifest, :app, :service_worker]
 
   def new
     @check_list = CheckList.new
@@ -20,7 +20,13 @@ class CheckListsController < ApplicationController
     @items = @check_list.items.order(created_at: :desc).to_a   # call to_a, because we want the dummy item not be part of the collection
     @item = @check_list.items.new
   end
-  
+
+  def cleanup
+    @check_list.items.where(checked: true).destroy_all
+
+    redirect_to @check_list
+  end
+
   private
 
   def check_list_params
