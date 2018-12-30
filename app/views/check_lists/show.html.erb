@@ -33,10 +33,10 @@
     <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
       <div class="form-group mr-3 mb-0">
-        <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control' %>
+        <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control', style: 'padding-left: 30px' %>
         
       </div>
-      <%= image_tag 'erase.png', id: 'item_name_mic', height: 20, onclick: 'record();', style: 'position: absolute; cursor: pointer;' %>
+      <%= image_tag 'mic.png', id: 'item_name_mic', height: 20, onclick: 'record();', style: 'position: absolute; cursor: pointer; left: 25px;' %>
     
       <%= f.submit '+', class: 'btn btn-primary mb-0' %>
     
@@ -76,11 +76,7 @@ function record() {
   recognition.start();
 }
 
-navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(function(stream) {
-        alert('You let me use your mic!')
-      })
-      .catch(function(err) {
-        alert('No mic for you!')
-      });
+// request permissions to use microphone
+navigator.mediaDevices.getUserMedia({ audio: true });
+      
 </script>
