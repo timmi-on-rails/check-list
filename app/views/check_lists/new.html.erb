@@ -1,7 +1,6 @@
-<%= simple_form_for @check_list do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :title, autofocus: true %>
+<%= form_for @check_list do |f| %>
+ 
+  <%= f.text_field :title, autofocus: true, required: true %>
 
   <%= f.submit %>
 <% end %>
