@@ -30,16 +30,18 @@
 
 <div class="list-group">
   <div class="list-group-item">
-  <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
+    <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
-    <div class="form-group mr-3 mb-0">
-      <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control' %>
-    </div>
-  
-    <%= f.submit '+', class: 'btn btn-primary mb-0' %>
-  
-  <% end %>
-    </div>
+      <div class="form-group mr-3 mb-0">
+        <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control' %>
+        
+      </div>
+      <%= image_tag 'erase.png', id: 'item_name_mic', height: 20, onclick: 'record();', style: 'position: absolute; cursor: pointer;' %>
+    
+      <%= f.submit '+', class: 'btn btn-primary mb-0' %>
+    
+    <% end %>
+  </div>
 
   <% @items.each do |item| %>
     <%= link_to check_list_item_path(@check_list, item, item: { checked: !item.checked }), method: :patch, remote: true, class: 'list-group-item list-group-item-action' do %>
@@ -53,3 +55,32 @@
 </div>
 
 <script src="<%= app_check_list_path(@check_list, :js) %>" async></script>
+
+<script>
+function record() {
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+  var recognition = new SpeechRecognition();
+  recognition.lang = 'de-DE';
+  recognition.onresult = function(event) { 
+    document.getElementById('item_name').value = event.results[0][0].transcript;
+  }
+
+  recognition.onstart = function(event) {
+    document.getElementById("item_name_mic").style.webkitFilter = "blur(5px)";
+  }
+
+  recognition.onend = function(event) {
+    document.getElementById("item_name_mic").style.webkitFilter = "";
+  }
+
+  recognition.start();
+}
+
+navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(function(stream) {
+        alert('You let me use your mic!')
+      })
+      .catch(function(err) {
+        alert('No mic for you!')
+      });
+</script>
