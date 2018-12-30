@@ -58,6 +58,9 @@
 
 <script>
 function record() {
+  // request permissions to use microphone
+  navigator.mediaDevices.getUserMedia({ audio: true });
+
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
   var recognition = new SpeechRecognition();
   recognition.lang = 'de-DE';
@@ -75,8 +78,5 @@ function record() {
 
   recognition.start();
 }
-
-// request permissions to use microphone
-navigator.mediaDevices.getUserMedia({ audio: true });
-      
+   
 </script>
