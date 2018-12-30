@@ -32,8 +32,8 @@
   <div class="list-group-item">
     <%= form_for [ @check_list, @item ], html: { class: 'form-inline' } do |f| %>
 
-      <div class="form-group mr-3 mb-0">
-        <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control', style: 'padding-left: 30px' %>
+      <div class="form-group mr-2 mb-0">
+        <%= f.text_field :name, required: true, autocomplete: 'off', class: 'form-control', style: 'padding-left: 30px;' %>
         
       </div>
       <%= image_tag 'mic.png', id: 'item_name_mic', height: 20, onclick: 'record();', style: 'position: absolute; cursor: pointer; left: 25px;' %>
